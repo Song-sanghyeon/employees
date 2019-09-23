@@ -10,7 +10,10 @@
 </head>
 <body>
 	<h1>부서 목록</h1>
-	<table>
+	<div>
+		<a href="${pageContext.request.contextPath}/">홈으로</a>
+	</div>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>부서 번호</th>

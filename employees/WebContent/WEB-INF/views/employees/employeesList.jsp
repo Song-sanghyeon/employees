@@ -10,6 +10,9 @@
 </head>
 <body>
 	<h1>사원 목록</h1>
+	<div>
+		<a href="${pageContext.request.contextPath}/">홈으로</a>
+	</div>
 	<!-- form을 사용하여 사원리스트에서 페이지에 조회할 수 있는 limit을 선택할 수 있다. -->
 	<form method="get" action="<%=request.getContextPath()%>/employees/getEmployeesList">
 		<select name="Limit">
@@ -21,7 +24,7 @@
 		</select>
 		<button type="submit">사원 목록</button>
 	</form>
-	<table>
+	<table border="!">
 		<thead>
 			<tr>
 				<th>사원 번호</th>
