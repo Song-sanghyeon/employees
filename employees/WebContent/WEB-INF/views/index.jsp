@@ -85,6 +85,10 @@
 				<!-- dept_emp와 departments 테이블을 join하여 각 부서별 사원의 수를 볼 수 있는데, 퇴사자를 제외한 현재 사원의 수 이다. -->
 				<a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">현재 부서별 사원 수</a>
 			</li>
+			<li>
+				<!-- employees의 테이블에 데이터를 출력하는 페이지인데, 10개의 데이터씩 페이징화 시켜서 조회할 수 있는 페이지 이다. -->
+				 <a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원 목록 페이징 (10명 씩)</a>
+			</li>
 		</ul>
 	</div>
 	
