@@ -7,6 +7,40 @@ import db.DBHelper;
 import vo.Employees;
 
 public class EmployeesDao {
+	// 로그인을 하기위해 입력한 값이 employees테이블의 데이터에 일치한다면 session값으로 emp_no를 보내주는 메소드
+	// return 값으로는 emp_no를 보내기위한 sessionEmpNo, param 매개변수로는 first_name, last_name, emp_no의 값을 받아와야한다.
+	public int login(String firstName, String lastName, int empNo) {
+		// loginServlet doPost에서 매개변수를 제대로 받아왔는지 확인
+		System.out.println("Dao / login first_name : "+firstName);
+		System.out.println("Dao / login last_name : "+lastName);
+		System.out.println("Dao / login emp_no : "+empNo);
+		
+		int sessionEmpNo = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		// 입력한 first_name, last_name, emp_no값이 전부 일치한다면, 해당 행의 emp_no를 sessionEmpNo의 값에 저장
+		String sql = "SELECT emp_no FROM employees WHERE first_name=? AND last_name=? AND emp_no=?";
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, firstName);
+			stmt.setString(2, lastName);
+			stmt.setInt(3, empNo);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				sessionEmpNo = rs.getInt("emp_no");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, stmt, conn);
+		}
+		// 쿼리문을 작동시키고 값을 제대로 받아왓는지 확인
+		System.out.println("Dao / login sessionEmpNo : "+sessionEmpNo);
+		return sessionEmpNo;
+	}
+	
 	// 페이징을 하기위해 마지막 페이지인 lastPage를 구해야하는데, 마지막페이지는 전체 행의 수를 알고있어야 하기때문에 lastPage를 만드는 메소드
 	// return 값은 lastPage이기때문에 int 타입의 lastPage이고, param값은 rowPerPage이다. 
 	public int selectLastPage(int rowPerPage) {

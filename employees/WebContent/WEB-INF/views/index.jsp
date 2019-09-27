@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>index</title>
+  <meta charset="utf-8">
+  <!-- boot strap -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- 
@@ -14,11 +22,24 @@
 		4. 표현식 (el 사용)
 		jsp에서 나올수 있는 자바코드 4가지를 없애야 한다.
 	 -->
-	<h1>Index</h1>
+	<div class="container">
+		<br>
+		<h1>Index</h1>
+		<hr>
+	</div>
+	<!-- sessionEmpNo의 값이 null 값이 아니라면, login 되어있는 상태이기 때문에 로그아웃 버튼 생성 -->
+	<c:if test="${sessionEmpNo != null}">
+	<div class="container">
+		<!-- 로그아웃 버튼 클릭시, session 초기화 시켜주고, sessionEmpNo의 값도 0으로 초기화 시켜주어야 한다. -->
+		<a href="${pageContext.request.contextPath}/logout?sessionEmpNo=${sessionEmpNo}">로그아웃</a>
+	</div>
+	</c:if>
 	<!-- 6개의 테이블의 각 전체 행의 수를 나타내는 테이블 -->
-	<h2>테이블 정보</h2>
-	<div>
-		<table border="1">
+	<div class="container">
+		<h2>테이블 정보</h2>
+	</div>
+	<div class="container">
+		<table class="table table-bordered table-sm">
 			<thead>
 				<tr>
 					<th>테이블 이름</th>
@@ -88,6 +109,9 @@
 			<li>
 				<!-- employees의 테이블에 데이터를 출력하는 페이지인데, 10개의 데이터씩 페이징화 시켜서 조회할 수 있는 페이지 이다. -->
 				 <a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원 목록 페이징 (10명 씩)</a>
+			</li>
+			<li>
+				 <a href="${pageContext.request.contextPath}/deptEmp/getDeptEmpList">현재 근무중인 부서별 사원 목록 페이징 (10명 씩)</a>
 			</li>
 		</ul>
 	</div>
