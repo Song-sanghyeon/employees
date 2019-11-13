@@ -6,33 +6,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>employeesList</title>
+<title>employees List</title>
 </head>
 <body>
 	<h1>사원 목록</h1>
 	<div>
 		<a href="${pageContext.request.contextPath}/">홈으로</a>
 	</div>
-	<!-- form을 사용하여 사원리스트에서 페이지에 조회할 수 있는 limit을 선택할 수 있다. -->
-	<form method="get" action="<%=request.getContextPath()%>/employees/getEmployeesList">
-		<select name="Limit">
-			<option value="10">10</option>
-			<option value="20">20</option>
-			<option value="30">30</option>
-			<option value="40">40</option>
-			<option value="50">50</option>
-		</select>
-		<button type="submit">사원 목록</button>
-	</form>
-	<table border="!">
+	<div>
+		<!-- limit가 50인 테이블의 리스트 (오름차순, 내림차순) -->
+		<!-- first_name 기준  -->
+		사원 목록 first_name (limit 50)
+		<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">[오름차순]</a>
+		<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">[내림차순]</a>
+	</div>
+	<div>
+		<!-- employees 테이블의 데이터 중 성별로 나누어 각 성별의 사원 수를 볼 수 있는 리스트 -->
+		<a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수 (성별 group by gender)</a>
+	</div>
+	
+	<div>
+		<!-- employees의 테이블에 데이터를 출력하는 페이지인데, 10개의 데이터씩 페이징화 시켜서 조회할 수 있는 페이지 이다. -->
+		<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원 목록 페이징 (10명 씩)</a>
+	</div>
+	
+	<table border="1">
 		<thead>
 			<tr>
 				<th>사원 번호</th>
-				<th>사원 생일</th>
-				<th>사원 이름</th>
-				<th>사원 성</th>
-				<th>사원 성별</th>
-				<th>사원 입사일</th>
+				<th>생일</th>
+				<th>이름</th>
+				<th>성</th>
+				<th>성별</th>
+				<th>입사일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -50,5 +56,27 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div>
+		<!-- form을 사용하여 사원리스트에서 페이지에 조회할 수 있는 limit을 선택할 수 있다. -->
+		<form method="get" action="<%=request.getContextPath()%>/employees/getEmployeesList">
+			<select name="Limit">
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+				<option value="50">50</option>
+			</select>
+			<button type="submit">사원 목록</button>
+		</form>
+	</div>
+	<div>
+		<div class="container">
+		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
+			<input type="number" name="begin" value="10001">~<input type="number" name="end" value="49999">
+			<button type="submit">사원 목록 (between ... and ...)</button>
+			(${minEmpNo}~${maxEmpNo})
+		</form>
+	</div>
+	</div>
 </body>
 </html>

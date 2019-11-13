@@ -1,4 +1,4 @@
-package controller;
+package controller.departments;
 
 import java.util.*;
 import model.*;

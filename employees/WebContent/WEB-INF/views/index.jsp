@@ -24,7 +24,7 @@
 	 -->
 	<div class="container">
 		<br>
-		<h1>Index</h1>
+		<h1>INFORMATION</h1>
 		<hr>
 	</div>
 	<!-- sessionEmpNo의 값이 null 값이 아니라면, login 되어있는 상태이기 때문에 로그아웃 버튼 생성 -->
@@ -34,11 +34,10 @@
 		<a href="${pageContext.request.contextPath}/logout?sessionEmpNo=${sessionEmpNo}">로그아웃</a>
 	</div>
 	</c:if>
+	<!-- WEB APP 네비게이션 -->
 	<!-- 6개의 테이블의 각 전체 행의 수를 나타내는 테이블 -->
 	<div class="container">
-		<h2>테이블 정보</h2>
-	</div>
-	<div class="container">
+		<hr>테이블 이름을 클릭하면 해당 테이블의 리스트를 확인할 수 있습니다.<hr>
 		<table class="table table-bordered table-sm">
 			<thead>
 				<tr>
@@ -48,48 +47,34 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>employees</td>
+					<td><a href="<%=request.getContextPath()%>/employees/getEmployeesList">employees</a></td>
 					<td>${employeesRowCount}</td>
 				</tr>
 				<tr>
-					<td>departments</td>
+					<td><a href="<%=request.getContextPath()%>/departments/getDepartmentsList">departments</a></td>
 					<td>${departmentsRowCount}</td>
 				</tr>
 				<tr>
-					<td>dept_manager</td>
+					<td><a href="<%=request.getContextPath()%>/deptManager/getDeptManagerList">dept_manager</a></td>
 					<td>${deptManagerRowCount}</td>
 				</tr>
 				<tr>
-					<td>dept_emp</td>
+					<td><a href="<%=request.getContextPath()%>/deptEmp/getDeptEmpList">dept_emp</a></td>
 					<td>${deptEmpRowCount}</td>
 				</tr>
 				<tr>
-					<td>titles</td>
+					<td><a href="<%=request.getContextPath()%>/titles/getTitlesList">titles</a></td>
 					<td>${titlesRowCount}</td>
 				</tr>
 				<tr>
-					<td>salaries</td>
+					<td><a href="<%=request.getContextPath()%>/salaries/getSalariesList">salaries</a></td>
 					<td>${salariesRowCount}</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<!-- WEB APP 네비게이션 -->
-	<div>
+	<div class="container">
 		<ul>
-			<li>
-				<a href="<%=request.getContextPath()%>/departments/getDepartmentsList">부서 목록</a>
-			</li>
-			<li>
-				<a href="<%=request.getContextPath()%>/employees/getEmployeesList?Limit=10">사원 목록</a>
-			</li>
-			<!-- limit가 50인 테이블의 리스트 (오름차순, 내림차순) -->
-			<li>
-				<!-- first_name 기준  -->
-				사원 목록 first_name (limit 50)
-				<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">[오름차순]</a>
-				<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">[내림차순]</a>
-			</li>
 			<li>
 				<!-- 중복 제거 sql distinct을 이용하여 titles 테이블의 중복을 제외한 데이터만 볼 수 있는 리스트 -->
 				<a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무 목록 (중복제거 distinct)</a>
@@ -97,39 +82,11 @@
 			<li>
 				<!-- salaries 테이블의 데이터를 기반으로 총 행의수, 연봉을 더한값, 평균값, 가장 큰 값, 가장 작은 값, 평균 편차를 볼 수 있는 리스트 -->
 				<a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계값 (count, sum, avg, max, min, std)</a>
-			</li>
-			<li>
-				<!-- employees 테이블의 데이터 중 성별로 나누어 각 성별의 사원 수를 볼 수 있는 리스트 -->
-				<a href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수 (성별 group by gender)</a>
-			</li>
 			<li>
 				<!-- dept_emp와 departments 테이블을 join하여 각 부서별 사원의 수를 볼 수 있는데, 퇴사자를 제외한 현재 사원의 수 이다. -->
 				<a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">현재 부서별 사원 수</a>
 			</li>
-			<li>
-				<!-- employees의 테이블에 데이터를 출력하는 페이지인데, 10개의 데이터씩 페이징화 시켜서 조회할 수 있는 페이지 이다. -->
-				 <a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원 목록 페이징 (10명 씩)</a>
-			</li>
-			<li>
-				 <a href="${pageContext.request.contextPath}/deptEmp/getDeptEmpList">현재 근무중인 부서별 사원 목록 페이징 (10명 씩)</a>
-			</li>
 		</ul>
-	</div>
-	
-	<div>
-		<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
-			<input type="number" name="begin" value="10001">~<input type="number" name="end" value="49999">
-			<button type="submit">사원 목록 (between ... and ...)</button>
-			(${minEmpNo}~${maxEmpNo})
-		</form>
-	</div>
-	
-	<div>
-		EL -> employees table total row count : ${employeesRowCount}
-		EL -> departments table total row count : ${departmentsRowCount}
-		<br>
-		표현식 -> employees table total row count : <%=request.getAttribute("employeesRowCount")%>
-		표현식 -> departments table total row count : <%=request.getAttribute("departmentsRowCount")%>
 	</div>
 </body>
 </html>

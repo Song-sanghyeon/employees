@@ -1,4 +1,4 @@
-package controller;
+package controller.titles;
 
 import java.util.*;
 
