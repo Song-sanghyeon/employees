@@ -31,7 +31,8 @@
 	<c:if test="${sessionEmpNo != null}">
 	<div class="container">
 		<!-- 로그아웃 버튼 클릭시, session 초기화 시켜주고, sessionEmpNo의 값도 0으로 초기화 시켜주어야 한다. -->
-		<a href="${pageContext.request.contextPath}/logout?sessionEmpNo=${sessionEmpNo}">로그아웃</a>
+		<a class="btn btn-dark" role="button"
+			href="${pageContext.request.contextPath}/logout?sessionEmpNo=${sessionEmpNo}">로그아웃</a>
 	</div>
 	</c:if>
 	<!-- WEB APP 네비게이션 -->
