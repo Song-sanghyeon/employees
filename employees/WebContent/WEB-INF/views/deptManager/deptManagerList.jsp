@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>departmentsCountByDeptNo</title>
+<title>employeesListByPage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -15,31 +15,29 @@
 </head>
 <body>
 	<div class="container">
-		<h1>현재 부서별 인원 수</h1>
+		<h1>매니져 목록 (현재 근무 중인 매니져)</h1>
 		<div>
 			<a class="btn btn-light" role="button"
-				href="${pageContext.request.contextPath}/">홈으로</a>
-			<a class="btn btn-light" role="button"
-				href="${pageContext.request.contextPath}/departments/getDepartmentsList">뒤로가기</a>
+				href="${pageContext.request.contextPath}/">
+				홈으로</a>
 		</div>
-	</div>
-	<hr>
-	<div class="container">
-		<table class="table table-hover">
+		<!-- ### 테이블 시작 ####################################################################  -->
+			<table class="table table-hover">
 			<thead>
 				<tr>
+					<th>사원 번호</th>
 					<th>부서 번호</th>
 					<th>부서 이름</th>
+					<th>사원 이름</th>
 				</tr>
 			</thead>
 			<tbody>
-				<!-- java코드인 for문을 사용하지않고 forEach문을 이용하여 사용 -->
-				<!-- var은 사용할 변수이고, items은  객체이다 -->
-				<c:forEach var="map" items="${list}">
+				<c:forEach var="deptManager" items="${list}">
 					<tr>
-						<td>${map.deptNo}</td>
-						<td>${map.deptName}</td>
-						<td>${map.cnt}</td>
+						<td>${deptManager.empNo}</td>
+						<td>${deptManager.deptNo}</td>
+						<td>${deptManager.deptName}</td>
+						<td>${deptManager.empName}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

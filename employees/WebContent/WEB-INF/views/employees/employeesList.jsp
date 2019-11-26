@@ -21,6 +21,7 @@
 			<a class="btn btn-light" role="button"
 				href="${pageContext.request.contextPath}/">홈으로</a>
 		</div>
+		<br>
 		<div class="list-group">
 			<!-- limit가 50인 테이블의 리스트 (오름차순, 내림차순) -->
 			<!-- first_name 기준  -->

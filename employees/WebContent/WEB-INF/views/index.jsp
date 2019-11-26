@@ -83,10 +83,6 @@
 			<li>
 				<!-- salaries 테이블의 데이터를 기반으로 총 행의수, 연봉을 더한값, 평균값, 가장 큰 값, 가장 작은 값, 평균 편차를 볼 수 있는 리스트 -->
 				<a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계값 (count, sum, avg, max, min, std)</a>
-			<li>
-				<!-- dept_emp와 departments 테이블을 join하여 각 부서별 사원의 수를 볼 수 있는데, 퇴사자를 제외한 현재 사원의 수 이다. -->
-				<a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">현재 부서별 사원 수</a>
-			</li>
 		</ul>
 	</div>
 </body>
