@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/deptEmp/getDeptEmpList")
-public class GetDeptEmpListServlet extends HttpServlet {
+@WebServlet("/deptEmp/getDeptEmpNowList")
+public class GetDeptEmpNowListServlet extends HttpServlet {
 	private DeptEmpDao deptEmpDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 변수를 만들어 현재 페이지를 기본 1로 저장해주고, url로 받은 currentPage를 만든 변수에 저장
@@ -30,7 +30,7 @@ public class GetDeptEmpListServlet extends HttpServlet {
 		
 		// Dao 클래스내의 메소드를 실행시켜 값을 저장
 		deptEmpDao = new DeptEmpDao();
-		List<Map<String, Object>> list = deptEmpDao.selectDeptEmpList(currentPage, rowPerPage);
+		List<Map<String, Object>> list = deptEmpDao.selectDeptEmpNowList(currentPage, rowPerPage);
 		int lastPage = deptEmpDao.selectDeptEmpLastPage(rowPerPage);
 		// lastPage를 제대로 받아왔는지 확인
 		System.out.println("servlet lastPage : "+lastPage);
@@ -40,6 +40,6 @@ public class GetDeptEmpListServlet extends HttpServlet {
 		request.setAttribute("rowPerPage", rowPerPage);
 		request.setAttribute("lastPage", lastPage);
 		
-		request.getRequestDispatcher("/WEB-INF/views/deptEmp/deptEmpList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/deptEmp/deptEmpNowList.jsp").forward(request, response);
 	}
 }

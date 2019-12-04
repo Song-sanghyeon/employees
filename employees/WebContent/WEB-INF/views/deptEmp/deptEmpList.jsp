@@ -15,20 +15,29 @@
 </head>
 <body>
 	<div class="container">
-		<h1>현재 근무중인 부서별 사원 목록</h1>
+		<h1>사원 부서 변동 현황 목록</h1>
 		<div>
 			<a class="btn btn-light" role="button"
 				href="${pageContext.request.contextPath}/">홈으로</a>
 		</div>
 		<br>
+		<div class="list-group">
+			<!-- first_name 기준  -->
+			<a class="list-group-item list-group-item-action" 
+				href="${pageContext.request.contextPath}/deptEmp/getDeptEmpNowList">
+				현재 근무중인 사원</a>
+			<a class="list-group-item list-group-item-action"
+				href="${pageContext.request.contextPath}/deptEmp/getDeptEmpSearch">
+				사원의 부서 변동 현황</a>
+		</div>
 		<!-- ### 테이블 시작 ####################################################################  -->
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>사원 번호</th>
 					<th>부서 번호</th>
-					<th>부서 이름</th>
-					<th>사원 이름</th>
+					<th>전입 일</th>
+					<th>이적 일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,8 +45,8 @@
 					<tr>
 						<td>${deptEmp.empNo}</td>
 						<td>${deptEmp.deptNo}</td>
-						<td>${deptEmp.deptName}</td>
-						<td>${deptEmp.empName}</td>
+						<td>${deptEmp.fromDate}</td>
+						<td>${deptEmp.toDate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
