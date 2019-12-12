@@ -74,16 +74,5 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="container">
-		<ul>
-			<li>
-				<!-- 중복 제거 sql distinct을 이용하여 titles 테이블의 중복을 제외한 데이터만 볼 수 있는 리스트 -->
-				<a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무 목록 (중복제거 distinct)</a>
-			</li>
-			<li>
-				<!-- salaries 테이블의 데이터를 기반으로 총 행의수, 연봉을 더한값, 평균값, 가장 큰 값, 가장 작은 값, 평균 편차를 볼 수 있는 리스트 -->
-				<a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계값 (count, sum, avg, max, min, std)</a>
-		</ul>
-	</div>
 </body>
 </html>
